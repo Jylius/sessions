@@ -1,0 +1,4 @@
+//mongoose mongodb için kullanılan bir (object data modeling) kütüphanesidir.
+//mongodb deki verilerin javascript objelerine çevirilmesine yarar.
+
+//cons useSchema kısımında yeni bir şema tanımladık. veri tipini tanımladık ardında required true ile doldurulması zorunlu hale getirildi.

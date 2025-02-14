@@ -1,0 +1,25 @@
+const express = require('express');
+const User = require('../models/User');
+
+Express: Bu satırda, Express kütüphanesini dahil ediyoruz. Express, Node.js üzerinde web uygulamaları ve API'ler geliştirmek için kullanılan popüler bir framework’tür.
+User Modeli: Burada, daha önce oluşturduğumuz User modelini import ediyoruz. Bu model, MongoDB ile kullanıcı verileri üzerinde CRUD (Create, Read, Update, Delete) işlemleri yapmamıza olanak tanıyacak.
+
+
+
+const router = express.router();
+Express: Bu satırda, Express kütüphanesini dahil ediyoruz. Express, Node.js üzerinde web uygulamaları ve API'ler geliştirmek için kullanılan popüler bir framework’tür.
+
+
+
+router.post('/', async (req, res) => {
+    try {
+        const newUser = new User(req.body);
+        await newUser.save();
+        res.status(201).json(newUser);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
+POST isteği: router.post('/', ...) ile tanımlanan bu kısım, HTTP POST isteğini işler. POST, genellikle yeni veri oluşturmak için kullanılır. Burada /api/users/ URL'ine bir POST isteği yapıldığında yeni bir kullanıcı oluşturma işlemi yapılır.
+async/await: Bu yöntem, işlemlerin asenkron olarak yapılmasını sağlar. Veritabanı işlemleri zaman alabileceği için (örneğin, bir kullanıcıyı kaydetme işlemi), işlemi engellemeden diğer işlemlerin devam etmesini sağlar. await, işlemin tamamlanmasını bekler ve sonra sonucu döner.
+req.body: Kullanıcıdan gelen veri, req.body üzerinden alınır. Yani, kullanıcı API'ye bir JSON formatında veri gönderdiğinde, bu veri req.body ile erişilebilir olur.

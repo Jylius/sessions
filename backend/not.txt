@@ -1,0 +1,28 @@
+npm i cors
+npm i dotenv
+npm i nodemon
+--------------
+1- burada kütüphaneleri çağırdık.
+const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config(); 
+const cors = require('cors'); 
+
+Express: Bu kütüphane, web uygulamaları ve API’ler geliştirmek için kullanılır.
+Mongoose: MongoDB ile Node.js arasında köprü görevi görür, MongoDB'de veri saklama, okuma, güncelleme ve silme işlemlerini kolaylaştırır.
+dotenv: .env dosyasındaki ortam değişkenlerini (örneğin veritabanı bağlantı bilgileri) yüklemek için kullanılır.
+CORS (Cross-Origin Resource Sharing): Başka bir domaine (mesela frontend tarafı) yapılan isteklerin yönetilmesi için kullanılır. Bu kodda, localhost:8080 adresinden gelen isteklerin backend'e erişimine izin veriliyor.
+
+
+const app = express();              express.js in kendisini çağırdık burada
+app.use(express.json());            burası ise middleware. gelen istekleri json formatına parshe ediyor
+app.use(cors({                      corse ile beraber belirli bir domain (localhost:8080) için çalışıyor yani
+    origin: 'http://localhost:8080' bir frontend uygulaması backend için güvenlice istek atabiliyor.
+}));
+Özet
+Bu kod, bir Express.js uygulamasını başlatır.
+MongoDB ile bağlantı kurar ve veritabanı işlemlerini gerçekleştirmek için Mongoose kullanır.
+CORS ile başka bir domaine gelen isteklerin backend'e ulaşabilmesini sağlar.
+API rotaları tanımlanarak kullanıcılarla ilgili işlemleri yapmaya hazır hale getirilir (örneğin, kullanıcı oluşturma ve kullanıcı verilerini alma).
+Sunucu, belirlenen port üzerinde çalıştırılır.
+Bu yapı, modern bir RESTful API'nin temel bileşenlerini içerir.
